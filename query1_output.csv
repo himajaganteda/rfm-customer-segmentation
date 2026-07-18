@@ -1,0 +1,11 @@
+customer_name,last_order_date,recency_days,frequency,monetary
+Johns and Sons,2020-12-30,0,142,16291.0
+Hessel-Stiedemann,2020-12-23,7,55,6486.0
+"Dickinson, Hyatt and Berge",2020-09-20,101,24,2696.0
+Larkin-Collier,2020-12-02,28,21,2556.0
+Altenwerth-Konopelski,2020-10-27,64,20,2515.0
+"Swaniawski, Runolfsson and Green",2020-11-29,31,25,2493.0
+Romaguera-Dietrich,2020-12-27,3,20,2417.0
+"Rowe, Hermiston and Kessler",2020-09-30,91,22,2302.0
+Wisoky Inc,2020-11-02,58,21,2266.0
+Labadie and Sons,2020-11-27,33,19,2154.0

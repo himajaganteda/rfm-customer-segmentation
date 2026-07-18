@@ -1,0 +1,76 @@
+customer_name,last_order_date,recency_days,frequency,monetary,r_score,f_score,m_score,segment
+Johns and Sons,2020-12-30,0,142,16291.0,1,1,1,Champions
+Hessel-Stiedemann,2020-12-23,7,55,6486.0,1,1,1,Champions
+"Dickinson, Hyatt and Berge",2020-09-20,101,24,2696.0,4,1,1,Frequent but Fading
+Larkin-Collier,2020-12-02,28,21,2556.0,2,1,1,Champions
+Altenwerth-Konopelski,2020-10-27,64,20,2515.0,3,1,1,Frequent but Fading
+"Swaniawski, Runolfsson and Green",2020-11-29,31,25,2493.0,2,1,1,Champions
+Romaguera-Dietrich,2020-12-27,3,20,2417.0,1,1,1,Champions
+"Rowe, Hermiston and Kessler",2020-09-30,91,22,2302.0,4,1,1,Frequent but Fading
+Wisoky Inc,2020-11-02,58,21,2266.0,3,1,1,Frequent but Fading
+Labadie and Sons,2020-11-27,33,19,2154.0,2,1,1,Champions
+Walter LLC,2020-12-24,6,17,2151.0,1,2,1,Champions
+Friesen-Rath,2020-07-20,163,19,2087.0,5,1,1,Frequent but Fading
+Tillman and Sons,2020-11-23,37,21,2070.0,2,1,1,Champions
+Armstrong-Little,2020-12-15,15,19,2049.0,1,1,1,Champions
+"Schowalter, Lesch and Beahan",2020-11-28,32,16,2008.0,2,2,1,Champions
+Gislason-Stanton,2020-11-28,32,17,2003.0,2,2,2,Champions
+Kihn Inc,2020-12-04,26,22,1990.0,1,1,2,Champions
+"Christiansen, Donnelly and Bechtelar",2020-08-27,125,15,1942.0,4,2,2,Frequent but Fading
+"Murray, Reichel and Nolan",2020-12-16,14,23,1927.0,1,1,2,Champions
+McGlynn-Prosacco,2020-11-19,41,16,1892.0,2,2,2,Champions
+Dibbert Inc,2020-12-09,21,18,1865.0,1,2,2,Champions
+Hegmann Group,2020-09-24,97,15,1861.0,4,2,2,Frequent but Fading
+Corwin and Sons,2020-12-04,26,15,1849.0,1,2,2,Champions
+Hilll-Vandervort,2020-10-28,63,16,1823.0,3,2,2,Frequent but Fading
+Smith Group,2020-10-23,68,13,1804.0,3,2,2,Frequent but Fading
+O'Connell-Mitchell,2020-10-28,63,10,1664.0,3,3,2,At Risk / Lost
+Romaguera-Haley,2020-11-16,44,16,1653.0,2,2,2,Champions
+"Zieme, Bailey and Herzog",2020-12-29,1,15,1595.0,1,2,2,Champions
+"Farrell, Swaniawski and Crist",2020-11-14,46,17,1593.0,2,2,2,Champions
+"Spencer, Rogahn and Muller",2020-11-18,42,16,1583.0,2,2,2,Champions
+West-Cummings,2020-11-30,30,11,1528.0,2,3,3,Recent but Low Frequency
+"Schmitt, Purdy and Johnson",2020-12-20,10,11,1490.0,1,3,3,Recent but Low Frequency
+Kirlin and Sons,2020-11-02,58,12,1478.0,3,3,3,At Risk / Lost
+"Hamill, Kulas and Roob",2020-08-09,143,13,1434.0,5,2,3,Frequent but Fading
+"Keeling, Monahan and Pollich",2020-11-11,49,11,1384.0,3,3,3,At Risk / Lost
+"Bashirian, Okuneva and Bechtelar",2020-10-18,73,13,1347.0,4,3,3,At Risk / Lost
+Considine-Fisher,2020-10-09,82,11,1321.0,4,3,3,At Risk / Lost
+Wiza and Sons,2020-11-03,57,13,1304.0,3,3,3,At Risk / Lost
+McClure Inc,2020-11-15,45,11,1222.0,2,3,3,Recent but Low Frequency
+McGlynn-Bergstrom,2020-08-26,126,11,1179.0,4,3,3,At Risk / Lost
+"Jacobson, Marvin and Brown",2020-07-21,162,7,1085.0,5,4,3,At Risk / Lost
+"Hermiston, Simonis and Wisoky",2020-11-11,49,10,1068.0,3,3,3,At Risk / Lost
+Stehr LLC,2020-07-03,180,9,1028.0,5,3,3,At Risk / Lost
+"Hartmann, Hane and Pfannerstill",2020-09-17,104,9,1001.0,4,3,3,At Risk / Lost
+Goldner-Dibbert,2020-11-02,58,9,904.0,3,3,3,At Risk / Lost
+Franecki-White,2020-10-22,69,7,873.0,3,4,4,At Risk / Lost
+Wunsch LLC,2020-11-15,45,6,870.0,2,4,4,Recent but Low Frequency
+"Fisher, Morar and Skiles",2020-10-31,60,9,862.0,3,4,4,At Risk / Lost
+Tromp LLC,2020-12-22,8,5,845.0,1,4,4,Recent but Low Frequency
+Schoen-Keeling,2020-11-12,48,10,827.0,3,3,4,At Risk / Lost
+"Leffler, Prohaska and Streich",2020-12-04,26,9,766.0,2,4,4,Recent but Low Frequency
+Morissette Group,2020-12-15,15,6,702.0,1,4,4,Recent but Low Frequency
+Friesen and Sons,2020-12-04,26,6,630.0,2,4,4,Recent but Low Frequency
+Connelly-Mohr,2020-06-10,203,5,628.0,5,4,4,At Risk / Lost
+"Lubowitz, McLaughlin and Erdman",2020-05-23,221,7,625.0,5,4,4,At Risk / Lost
+"Shanahan, Schaden and Parker",2020-08-14,138,5,578.0,5,4,4,At Risk / Lost
+Konopelski LLC,2020-12-06,24,5,528.0,1,4,4,Recent but Low Frequency
+Stamm Inc,2020-10-05,86,4,518.0,4,5,4,At Risk / Lost
+Wyman Group,2020-10-12,79,4,511.0,4,5,4,At Risk / Lost
+Homenick-Marvin,2020-08-18,134,6,509.0,4,4,4,At Risk / Lost
+Stehr-Bogan,2020-08-09,143,3,469.0,5,5,5,At Risk / Lost
+Gleichner-Green,2020-10-31,60,3,463.0,3,5,5,At Risk / Lost
+Hane Inc,2020-05-15,229,4,460.0,5,5,5,At Risk / Lost
+Schuster Inc,2020-08-29,123,3,449.0,4,5,5,At Risk / Lost
+"Heaney, Gulgowski and Kshlerin",2020-08-31,121,4,440.0,4,5,5,At Risk / Lost
+"Lueilwitz, Kerluke and Lesch",2020-09-05,116,5,430.0,4,4,5,At Risk / Lost
+Stamm-Zulauf,2020-05-22,222,5,412.0,5,4,5,At Risk / Lost
+"Parisian, Steuber and Satterfield",2020-01-14,351,2,236.0,5,5,5,At Risk / Lost
+Marquardt-Kuvalis,2020-08-25,127,2,195.0,4,5,5,At Risk / Lost
+"Abbott, Roberts and Torp",2020-12-20,10,2,190.0,1,5,5,Recent but Low Frequency
+Baumbach Group,2020-03-20,285,2,171.0,5,5,5,At Risk / Lost
+Rath-Schroeder,2020-11-12,48,2,139.0,3,5,5,At Risk / Lost
+Littel-Blick,2019-08-24,494,1,95.0,5,5,5,At Risk / Lost
+"Lind, Mueller and Stoltenberg",2019-03-27,644,1,57.0,5,5,5,At Risk / Lost
+Gorczany-Lehner,2020-01-30,335,1,33.0,5,5,5,At Risk / Lost
