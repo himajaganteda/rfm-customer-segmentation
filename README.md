@@ -1,70 +1,83 @@
 # RFM Customer Segmentation (SQL)
 
 ## Overview
-This project segments customers from a retail sales dataset (1,000 orders, 15 countries) using **RFM analysis** — a widely used customer segmentation technique based on:
+This repository contains a SQL-first RFM (Recency, Frequency, Monetary) customer segmentation project. The goal is to identify high-value and at-risk customers so the business can prioritize retention and loyalty campaigns.
 
-- **Recency (R)** — how recently a customer placed their last order
-- **Frequency (F)** — how often a customer places orders
-- **Monetary (M)** — how much a customer has spent in total
+This update added reproducible SQL scripts, a data-cleaning script, validation queries, instructions to generate visuals, a short business objective + campaign recommendations, limitations, and a 3-slide summary (slides/summary.md). Run order and instructions are below.
 
-The goal is to identify which customers are high-value and engaged versus which ones are at risk of churning, so a business can prioritize retention, re-engagement, or loyalty efforts accordingly.
+## Business objective
+Reduce churn and increase repeat revenue by targeting customers with personalized campaigns. Objective: increase repeat purchase rate by 10% among the "At Risk" segment over 3 months by running a targeted winback campaign; increase revenue from "Champion" customers by 15% via VIP offers.
 
-All analysis was done in **SQL** using **DB Browser for SQLite**.
+## What I added in this update
+- sql/query1_data_cleaning.sql — data ingestion & cleaning steps (blank-row removal, date parsing) and instructions.
+- sql/query2_rfm_raw.sql — RFM raw metrics (last_purchase, frequency, monetary).
+- sql/query3_rfm_scores.sql — NTILE scoring, rfm_string, and segmentation mapping.
+- sql/query4_metrics_validation.sql — AOV, repeat rate, segment revenue share, LTV proxy and simple sanity checks.
+- visuals/plot_instructions.md — Python snippets (pandas/matplotlib) to create cohort retention and revenue-share plots and save PNGs.
+- slides/summary.md — 3-slide PDF-ready summary (in markdown) you can convert to PDF.
+- README updated with run instructions and expected outputs.
 
-## Dataset
-- Source: retail sales dataset (same dataset used in the accompanying Excel and Python analyses in this portfolio)
-- Fields used: `customer_name`, `order_id`, `order_value_EUR`, `date`
-- Cleaning step: the raw CSV import included ~1,047,575 blank rows (a common artifact of Excel-exported CSVs). These were identified and removed, leaving the true dataset of 1,000 orders.
+## Reproducibility — how to run (SQLite / psql)
+Recommended: run the SQL files in the order below. The SQL is written to work with SQLite (DB Browser for SQLite) and is compatible with Postgres with small tweaks (CASTs, date parsing). If you want, I can produce a Postgres-specific branch.
 
-## Approach
+Run order (in DB Browser / sqlite3 / psql):
+1. sql/query1_data_cleaning.sql
+2. sql/query2_rfm_raw.sql
+3. sql/query3_rfm_scores.sql
+4. sql/query4_metrics_validation.sql
 
-### 1. Date Conversion
-Dates were stored as text in `M/D/YYYY` format. Since SQLite doesn't natively parse this format, a query was built to break the string into month, day, and year components and reassemble it into ISO format (`YYYY-MM-DD`) for accurate date calculations.
+Example (sqlite3):
+  sqlite3 mydb.db < sql/query1_data_cleaning.sql
+  sqlite3 mydb.db < sql/query2_rfm_raw.sql
 
-### 2. RFM Base Metrics
-For each customer, calculated:
-- `recency_days` — days since their most recent order (relative to the most recent date in the dataset)
-- `frequency` — total number of orders placed
-- `monetary` — total amount spent
+Example (psql / Postgres) — replace types/funcs as needed:
+  psql -d mydb -f sql/query1_data_cleaning.sql
 
-### 3. NTILE Scoring
-Used SQLite's `NTILE(5)` window function to split all customers into 5 equal-sized groups (1–5) for Recency and Frequency, where **bucket 1 represents the best-performing group** (most recent, most frequent).
+Expected outputs (check these tables / files):
+- rfm_raw (customer_id, last_purchase, frequency, monetary)
+- rfm_scores (customer_id, r_score, f_score, m_score, rfm_string, segment)
+- segment_profiles (segment, users, avg_monetary, avg_frequency, revenue_share)
+- CSV exports: outputs/rfm_scores.csv and outputs/segment_profiles.csv (create by running the SQL and exporting results)
 
-### 4. Segmentation
-Combined R and F scores into four customer segments using a `CASE` statement:
+## Data cleaning & provenance
+See sql/query1_data_cleaning.sql for exact cleaning steps. In short:
+- Removed blank rows from original CSV (artifact from Excel) using a WHERE clause that discards rows with NULL or empty key fields.
+- Normalized date strings (M/D/YYYY) into ISO date format and converted to DATE/TIMESTAMP.
+- Filtered canceled orders and only used completed transactions for monetary calculations.
+- Documented the original raw file name and row counts (before/after) in the script as comments.
 
-| Segment | Definition |
-|---|---|
-| **Champions** | Recent AND frequent buyers |
-| **Recent but Low Frequency** | Ordered recently, but infrequently overall |
-| **Frequent but Fading** | Used to order often, but haven't recently |
-| **At Risk / Lost** | Neither recent nor frequent |
+## Business actions (2–3 recommended campaigns)
+1) Champions (High R & F & M): Invite to VIP program — offer early access + 10% off; goal: +15% revenue from this group.
+2) At Risk (Low R, previously high F): Winback email with a personalized discount and product recommendations; goal: recover 10% into active buyers.
+3) Recent but Low Frequency: Nurture with cross-sell recommendations + free shipping for next order to convert into repeat buyers.
 
-## Key Findings
+## Metrics & validation included
+The validation script (sql/query4_metrics_validation.sql) computes:
+- AOV (avg order value) per segment
+- Repeat rate (customers with >1 orders / total customers) per segment
+- Revenue share (% of total monetary by segment)
+- Simple LTV proxy = avg_order_value * avg_frequency * expected_lifetime_months (configurable)
+- Sanity checks: distribution buckets for recency/frequency, and a small sample of top customers per segment
 
-| Segment | Customers | % of Total |
-|---|---|---|
-| At Risk / Lost | 35 | 46.7% |
-| Champions | 20 | 26.7% |
-| Recent but Low Frequency | 10 | 13.3% |
-| Frequent but Fading | 10 | 13.3% |
+## Outputs & visuals
+I included instructions to create two visuals using Python + pandas + matplotlib in visuals/plot_instructions.md:
+- Cohort retention curve (monthly cohorts)
+- Segment revenue share (pie or bar chart)
 
-**Takeaway:** Nearly half of all customers (46.7%) fall into the "At Risk / Lost" segment, while just over a quarter (26.7%) are "Champions." This suggests the business has a strong core of loyal, high-value customers, but also a significant re-engagement opportunity — targeted win-back campaigns for the At Risk segment could meaningfully improve overall customer retention.
+Run the query to export outputs/rfm_scores.csv and outputs/segment_profiles.csv, then run the Python snippets to create PNGs.
 
-## Files in this repository
+## Limitations & next steps
+- Small dataset (1,000 orders) — limited statistical power; better to run across >6–12 months of transactions.
+- Single currency (EUR) assumed — add an FX normalization step for multi-currency data.
+- No campaign response data available — to validate actions, add post-campaign events or UTM tags.
 
-| File | Description |
-|---|---|
-| `Sales-details.csv` | Raw dataset used for the analysis |
-| `query1.sql` | RFM base metric calculation (Recency, Frequency, Monetary per customer) |
-| `query1_output` | Output of the base RFM query |
-| `query2.sql` | Full RFM scoring and segmentation query (NTILE scoring + segment labels) |
-| `query2_output` | Final segmented customer output |
+Next steps I can do for you (choose):
+A) Convert scripts to Postgres dialect and add automation (pgAgent cron example).
+B) Create a small Streamlit dashboard and commit it to repo.
+C) Produce PNGs from the dataset and add them to outputs/ (requires running the Python plotting steps locally or giving me permission to push images).
 
-## Tools Used
-- SQL (SQLite)
-- DB Browser for SQLite
+If you want me to commit further changes (A/B/C) to the repository, tell me which and I will proceed.
 
-## Author
-Himaja Ganteda
-[GitHub](https://github.com/himajaganteda)
+---
+Author: Himaja Ganteda
+Repo: https://github.com/himajaganteda/rfm-customer-segmentation
